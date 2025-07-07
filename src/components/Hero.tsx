@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { PlayCircle } from "lucide-react";
 import heroBackground from "@/assets/hero-background.jpg";
+import { LeadForm } from "./LeadForm";
 
 interface HeroProps {
   onOpenModal: () => void;
@@ -78,6 +79,11 @@ export const Hero = ({ onOpenModal }: HeroProps) => {
                 <p className="text-muted-foreground">VSL Player - Integración pendiente</p>
               </div>
             )}
+          </div>
+
+          {/* Lead Form - Always visible below VSL */}
+          <div className="mt-12 max-w-2xl mx-auto">
+            <LeadForm />
           </div>
 
           {/* CTAs */}
