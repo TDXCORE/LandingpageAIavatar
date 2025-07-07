@@ -1,7 +1,7 @@
+
 import { useState } from "react";
 import { Hero } from "@/components/Hero";
 import { ProblemSolution } from "@/components/ProblemSolution";
-import { HowItWorks } from "@/components/HowItWorks";
 import { UseCases } from "@/components/UseCases";
 import { LeadModal } from "@/components/LeadModal";
 import { StickyButton } from "@/components/StickyButton";
@@ -16,7 +16,6 @@ const Index = () => {
     <div className="min-h-screen bg-background text-foreground">
       <Hero onOpenModal={openModal} />
       <ProblemSolution />
-      <HowItWorks />
       <UseCases />
       
       {/* Sticky CTA */}
