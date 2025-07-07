@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "sonner";
 import { Loader2 } from "lucide-react";
 
@@ -13,6 +14,7 @@ export const LeadForm = ({ className = "" }: LeadFormProps) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    countryCode: "+57",
     phone: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -22,6 +24,13 @@ export const LeadForm = ({ className = "" }: LeadFormProps) => {
     setFormData(prev => ({
       ...prev,
       [name]: value
+    }));
+  };
+
+  const handleCountryCodeChange = (value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      countryCode: value
     }));
   };
 
@@ -39,7 +48,7 @@ export const LeadForm = ({ className = "" }: LeadFormProps) => {
         body: JSON.stringify({
           name: formData.name,
           email: formData.email,
-          phone: formData.phone,
+          phone: `${formData.countryCode}${formData.phone}`,
         }),
       });
 
@@ -48,7 +57,7 @@ export const LeadForm = ({ className = "" }: LeadFormProps) => {
       if (response.ok && result.success) {
         console.log('Contact created successfully:', result.contactId);
         toast.success('¡Perfecto! Te contactaremos pronto para tu prueba gratuita.');
-        setFormData({ name: "", email: "", phone: "" });
+        setFormData({ name: "", email: "", countryCode: "+57", phone: "" });
       } else {
         console.error('API Error:', result);
         toast.error(result.error || 'Error al crear el contacto. Intenta nuevamente.');
@@ -114,16 +123,35 @@ export const LeadForm = ({ className = "" }: LeadFormProps) => {
             <Label htmlFor="phone" className="text-foreground font-medium">
               Número de teléfono
             </Label>
-            <Input
-              id="phone"
-              name="phone"
-              type="tel"
-              placeholder="300 123 4567"
-              value={formData.phone}
-              onChange={handleChange}
-              required
-              className="bg-input border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all"
-            />
+            <div className="flex gap-2">
+              <Select value={formData.countryCode} onValueChange={handleCountryCodeChange}>
+                <SelectTrigger className="w-24 bg-input border-border/50 focus:border-primary/50 focus:ring-primary/20">
+                  <SelectValue />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="+57">🇨🇴 +57</SelectItem>
+                  <SelectItem value="+1">🇺🇸 +1</SelectItem>
+                  <SelectItem value="+52">🇲🇽 +52</SelectItem>
+                  <SelectItem value="+54">🇦🇷 +54</SelectItem>
+                  <SelectItem value="+51">🇵🇪 +51</SelectItem>
+                  <SelectItem value="+56">🇨🇱 +56</SelectItem>
+                  <SelectItem value="+593">🇪🇨 +593</SelectItem>
+                  <SelectItem value="+58">🇻🇪 +58</SelectItem>
+                  <SelectItem value="+507">🇵🇦 +507</SelectItem>
+                  <SelectItem value="+506">🇨🇷 +506</SelectItem>
+                </SelectContent>
+              </Select>
+              <Input
+                id="phone"
+                name="phone"
+                type="tel"
+                placeholder="300 123 4567"
+                value={formData.phone}
+                onChange={handleChange}
+                required
+                className="flex-1 bg-input border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all"
+              />
+            </div>
           </div>
 
           <Button
