@@ -1,9 +1,4 @@
 {
-  "functions": {
-    "api/create-contact.js": {
-      "runtime": "nodejs18.x"
-    }
-  },
   "env": {
     "CHATWOOT_ACCOUNT_ID": "126521",
     "CHATWOOT_API_TOKEN": "PNwLGXoDiJ22QKd4AzX9Xxof",
