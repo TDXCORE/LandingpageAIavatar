@@ -1,0 +1,123 @@
+/* Custom styles for react-phone-number-input */
+.react-phone-number-input {
+  display: flex;
+  align-items: stretch;
+  gap: 0;
+  border: 1px solid hsl(var(--border) / 0.5);
+  border-radius: calc(var(--radius) - 2px);
+  background: hsl(var(--input));
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.react-phone-number-input:focus-within {
+  border-color: hsl(var(--primary) / 0.5);
+  box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
+}
+
+.react-phone-number-input__country-select {
+  background: hsl(var(--input));
+  border: none;
+  border-right: 1px solid hsl(var(--border) / 0.5);
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  min-width: 7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-weight: 500;
+  color: hsl(var(--foreground));
+}
+
+.react-phone-number-input__country-select:focus {
+  outline: none;
+  background: hsl(var(--accent));
+}
+
+.react-phone-number-input__country-select:hover {
+  background: hsl(var(--accent));
+}
+
+.react-phone-number-input__input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  color: hsl(var(--foreground));
+  outline: none;
+}
+
+.react-phone-number-input__input::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+
+.react-phone-number-input__country-select-arrow {
+  color: hsl(var(--muted-foreground));
+  margin-left: 0.25rem;
+  font-size: 12px;
+}
+
+.react-phone-number-input__country {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-weight: 500;
+}
+
+.react-phone-number-input__country-flag {
+  width: 1.2em;
+  height: 1.2em;
+}
+
+/* Show country code in the selector */
+.react-phone-number-input__country-select-option {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+.react-phone-number-input__country-select-option:hover {
+  background: hsl(var(--accent));
+}
+
+/* Custom dropdown styles */
+.react-phone-number-input__country-select-dropdown {
+  background: hsl(var(--popover));
+  border: 1px solid hsl(var(--border));
+  border-radius: calc(var(--radius) - 2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  max-height: 200px;
+  overflow-y: auto;
+  z-index: 50;
+}
+
+/* Better visibility for the country code */
+.react-phone-number-input__country-select-list {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.react-phone-number-input__country-select-option {
+  padding: 0.5rem 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-size: 0.875rem;
+}
+
+.react-phone-number-input__country-select-option:hover {
+  background: hsl(var(--accent));
+}
+
+/* Show calling code next to country name */
+.react-phone-number-input__country-select-option::after {
+  content: attr(data-country-calling-code);
+  margin-left: auto;
+  color: hsl(var(--muted-foreground));
+  font-size: 0.75rem;
+}

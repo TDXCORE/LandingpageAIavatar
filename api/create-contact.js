@@ -24,20 +24,30 @@ export default async function handler(req, res) {
 
     // Format phone number to E.164 format
     const formatPhoneNumber = (phone) => {
+      // If phone is already in E.164 format (starts with +), return as is
+      if (phone && phone.startsWith('+')) {
+        return phone;
+      }
+      
+      // Clean phone number of non-digit characters
       const digits = phone.replace(/\D/g, '');
       
+      // If it's a Colombian number without country code
+      if (digits.length === 10 && !digits.startsWith('57')) {
+        return `+57${digits}`;
+      }
+      
+      // If it starts with 57 and has the right length for Colombia
       if (digits.startsWith('57') && digits.length >= 10) {
         return `+${digits}`;
       }
       
-      if (digits.length === 10) {
-        return `+57${digits}`;
-      }
-      
-      if (phone.startsWith('+')) {
+      // For other cases, try to format as E.164
+      if (digits.length > 0) {
         return `+${digits}`;
       }
       
+      // Fallback to Colombia format
       return `+57${digits}`;
     };
 

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { PlayCircle } from "lucide-react";
 import heroBackground from "@/assets/hero-background.jpg";
-import { LeadForm } from "./LeadForm";
+import EmbeddedTypeformLeadForm from "./EmbeddedTypeformLeadForm";
 
 interface HeroProps {
   onOpenModal: () => void;
@@ -83,7 +83,7 @@ export const Hero = ({ onOpenModal }: HeroProps) => {
 
           {/* Lead Form - Always visible below VSL */}
           <div className="mt-12 max-w-2xl mx-auto">
-            <LeadForm />
+            <EmbeddedTypeformLeadForm />
           </div>
 
           {/* CTAs */}
