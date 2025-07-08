@@ -17,8 +17,11 @@ export default async function handler(req, res) {
   try {
     const { name, email, phone } = req.body;
 
+    console.log('Received request data:', { name, email, phone });
+
     // Validate required fields
     if (!name || !email || !phone) {
+      console.error('Missing required fields:', { name: !!name, email: !!email, phone: !!phone });
       return res.status(400).json({ error: 'All fields are required' });
     }
 
@@ -53,26 +56,37 @@ export default async function handler(req, res) {
 
     const formattedPhone = formatPhoneNumber(phone);
 
+    console.log('Formatted phone:', formattedPhone);
+    console.log('Chatwoot account ID:', process.env.VITE_CHATWOOT_ACCOUNT_ID || process.env.CHATWOOT_ACCOUNT_ID);
+    console.log('Chatwoot API token exists:', !!(process.env.VITE_CHATWOOT_API_TOKEN || process.env.CHATWOOT_API_TOKEN));
+
     // Chatwoot API call
+    const chatwootPayload = {
+      name,
+      email,
+      phone_number: formattedPhone,
+      identifier: `lead-${Date.now()}`,
+      custom_attributes: {
+        source: 'landing_page',
+        form_type: 'vsl_lead_form',
+        created_at: new Date().toISOString(),
+      },
+    };
+
+    console.log('Chatwoot payload:', chatwootPayload);
+
+    const accountId = process.env.VITE_CHATWOOT_ACCOUNT_ID || process.env.CHATWOOT_ACCOUNT_ID;
+    const apiToken = process.env.VITE_CHATWOOT_API_TOKEN || process.env.CHATWOOT_API_TOKEN;
+
     const chatwootResponse = await fetch(
-      `https://app.chatwoot.com/api/v1/accounts/${process.env.CHATWOOT_ACCOUNT_ID}/contacts`,
+      `https://app.chatwoot.com/api/v1/accounts/${accountId}/contacts`,
       {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'api_access_token': process.env.CHATWOOT_API_TOKEN,
+          'api_access_token': apiToken,
         },
-        body: JSON.stringify({
-          name,
-          email,
-          phone_number: formattedPhone,
-          identifier: `lead-${Date.now()}`,
-          custom_attributes: {
-            source: 'landing_page',
-            form_type: 'vsl_lead_form',
-            created_at: new Date().toISOString(),
-          },
-        }),
+        body: JSON.stringify(chatwootPayload),
       }
     );
 
@@ -87,19 +101,20 @@ export default async function handler(req, res) {
     const contact = await chatwootResponse.json();
     
     // Optional: Create conversation if inbox_id is provided
-    if (process.env.CHATWOOT_INBOX_ID) {
+    const inboxId = process.env.VITE_CHATWOOT_INBOX_ID || process.env.CHATWOOT_INBOX_ID;
+    if (inboxId) {
       try {
         await fetch(
-          `https://app.chatwoot.com/api/v1/accounts/${process.env.CHATWOOT_ACCOUNT_ID}/conversations`,
+          `https://app.chatwoot.com/api/v1/accounts/${accountId}/conversations`,
           {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'api_access_token': process.env.CHATWOOT_API_TOKEN,
+              'api_access_token': apiToken,
             },
             body: JSON.stringify({
               source_id: formattedPhone,
-              inbox_id: parseInt(process.env.CHATWOOT_INBOX_ID),
+              inbox_id: parseInt(inboxId),
               contact_id: contact.id,
             }),
           }

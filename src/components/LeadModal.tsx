@@ -64,21 +64,26 @@ export const LeadModal = ({ isOpen, onClose }: LeadModalProps) => {
     onSubmit: async ({ value }) => {
       setIsSubmitting(true);
       try {
+        console.log('Enviando datos modal:', value);
+        
         const response = await fetch('/api/create-contact', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
           },
-          body: JSON.stringify(value),
+          body: JSON.stringify({
+            name: value.name,
+            email: value.email,
+            phone: value.phone,
+          }),
         });
 
-        if (!response.ok) {
-          throw new Error('Failed to submit form');
-        }
-
-        const result = await response.json();
+        console.log('Response status modal:', response.status);
         
-        if (result.success) {
+        const result = await response.json();
+        console.log('Response data modal:', result);
+        
+        if (response.ok && result.success) {
           setIsCompleted(true);
           toast.success('¡Perfecto! Te contactaremos pronto para tu prueba gratuita.');
           setTimeout(() => {
@@ -88,11 +93,11 @@ export const LeadModal = ({ isOpen, onClose }: LeadModalProps) => {
             form.reset();
           }, 3000);
         } else {
-          throw new Error(result.message || 'Failed to submit form');
+          throw new Error(result.error || result.message || 'Failed to submit form');
         }
       } catch (error) {
         console.error('Form submission error:', error);
-        toast.error('Error al enviar el formulario. Intenta nuevamente.');
+        toast.error(`Error: ${error.message || 'Error al enviar el formulario. Intenta nuevamente.'}`);
       } finally {
         setIsSubmitting(false);
       }
