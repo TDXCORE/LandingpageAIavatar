@@ -35,7 +35,7 @@ export const HowItWorks = () => {
       icon: UserCheck,
       title: "Calificar",
       description: "Evaluamos tu caso de uso y requisitos técnicos",
-      detail: "Análisis BANT y definición de scope técnico para tu avatar personalizado",
+      detail: "Definición de scope técnico para tu avatar personalizado",
       color: "text-yellow-500"
     },
     {
