@@ -80,47 +80,47 @@ export const UseCasesAI = () => {
   ];
 
   return (
-    <section className="py-20 bg-background">
-      <div className="container mx-auto px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold mb-6">
+    <section className="py-12 sm:py-16 lg:py-20 bg-background">
+      <div className="container mx-auto px-4 sm:px-6">
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6">
             <span className="bg-gradient-primary bg-clip-text text-transparent">
               Casos de uso
             </span>{" "}
             <span className="text-foreground">de alto impacto</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+          <p className="text-lg sm:text-xl text-muted-foreground max-w-3xl mx-auto px-4">
             Avatares de IA especializados para cada industria con métricas comprobadas de mejora
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {useCases.map((useCase, index) => {
             const IconComponent = useCase.icon;
             return (
               <Card 
                 key={index}
-                className="group hover:shadow-glow-primary transition-all duration-300 hover:scale-105 bg-gradient-subtle border-border/50"
+                className="group hover:shadow-glow-primary transition-all duration-300 hover:scale-105 bg-gradient-subtle border-border/50 h-full"
               >
-                <CardHeader className="space-y-4">
+                <CardHeader className="space-y-3 sm:space-y-4 p-4 sm:p-6">
                   <div className="flex items-center justify-between">
-                    <div className={`p-3 rounded-xl bg-secondary/50 ${useCase.color}`}>
-                      <IconComponent className="w-6 h-6" />
+                    <div className={`p-2 sm:p-3 rounded-lg sm:rounded-xl bg-secondary/50 ${useCase.color}`}>
+                      <IconComponent className="w-5 h-5 sm:w-6 sm:h-6" />
                     </div>
-                    <Badge variant="secondary" className="text-xs">
+                    <Badge variant="secondary" className="text-[10px] sm:text-xs">
                       {useCase.badge}
                     </Badge>
                   </div>
-                  <CardTitle className="text-xl font-bold group-hover:text-primary transition-colors">
+                  <CardTitle className="text-lg sm:text-xl font-bold group-hover:text-primary transition-colors">
                     {useCase.title}
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
-                  <CardDescription className="text-muted-foreground leading-relaxed">
+                <CardContent className="space-y-3 sm:space-y-4 p-4 sm:p-6 pt-0">
+                  <CardDescription className="text-sm sm:text-base text-muted-foreground leading-relaxed">
                     {useCase.description}
                   </CardDescription>
-                  <div className="pt-2 border-t border-border/30">
-                    <p className="text-sm font-semibold text-primary">
+                  <div className="pt-2 sm:pt-3 border-t border-border/30">
+                    <p className="text-xs sm:text-sm font-semibold text-primary">
                       📈 {useCase.kpi}
                     </p>
                   </div>
@@ -131,12 +131,12 @@ export const UseCasesAI = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="text-center mt-16">
-          <p className="text-lg text-muted-foreground mb-6">
+        <div className="text-center mt-8 sm:mt-12 lg:mt-16">
+          <p className="text-base sm:text-lg text-muted-foreground mb-4 sm:mb-6 px-4">
             ¿No encuentras tu caso de uso? Podemos crear un avatar personalizado para tu industria
           </p>
-          <div className="inline-flex items-center px-6 py-3 bg-gradient-subtle rounded-xl border border-border/50">
-            <span className="text-sm text-muted-foreground">
+          <div className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-gradient-subtle rounded-lg sm:rounded-xl border border-border/50 mx-4">
+            <span className="text-xs sm:text-sm text-muted-foreground text-center">
               💡 Consulta personalizada gratuita disponible
             </span>
           </div>

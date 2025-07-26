@@ -165,20 +165,20 @@ export default function EmbeddedTypeformLeadForm({ onSubmit, className = "" }: E
   }
 
   return (
-    <div className={`bg-gradient-subtle rounded-2xl p-8 border border-border/50 shadow-glow-primary ${className}`}>
-      <div className="text-center mb-8">
-        <h3 className="text-3xl font-bold mb-4">
+    <div className={`bg-gradient-subtle rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-border/50 shadow-glow-primary ${className}`}>
+      <div className="text-center mb-6 sm:mb-8">
+        <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">
           <span className="bg-gradient-primary bg-clip-text text-transparent">
             Prueba AI Avatar Interactivo Gratis
           </span>
         </h3>
-        <p className="text-muted-foreground text-lg">
+        <p className="text-muted-foreground text-base sm:text-lg px-2">
           Agenda tu demostración personalizada y descubre cómo AI Avatar Interactivo puede transformar tu negocio
         </p>
       </div>
 
       {/* Progress Bar */}
-      <div className="mb-8">
+      <div className="mb-6 sm:mb-8">
         <div className="flex justify-between items-center mb-2">
           <span className="text-sm text-muted-foreground">
             Paso {currentStep + 1} de {steps.length}
@@ -208,17 +208,17 @@ export default function EmbeddedTypeformLeadForm({ onSubmit, className = "" }: E
             className="space-y-6"
           >
             {/* Question */}
-            <div className="text-center space-y-2">
-              <h4 className="text-2xl font-bold text-foreground">
+            <div className="text-center space-y-2 px-2">
+              <h4 className="text-xl sm:text-2xl font-bold text-foreground">
                 {currentStepData.title}
               </h4>
-              <p className="text-muted-foreground">
+              <p className="text-sm sm:text-base text-muted-foreground">
                 {currentStepData.subtitle}
               </p>
             </div>
 
             {/* Input Field */}
-            <div className="space-y-4">
+            <div className="space-y-3 sm:space-y-4">
               <form.Field
                 name={currentStepData.field}
                 validators={{
@@ -263,7 +263,7 @@ export default function EmbeddedTypeformLeadForm({ onSubmit, className = "" }: E
                         onChange={(e) => field.handleChange(e.target.value)}
                         onBlur={field.handleBlur}
                         placeholder={currentStepData.placeholder}
-                        className="bg-input border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all h-12"
+                        className="bg-input border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all h-11 sm:h-12 text-base"
                         autoFocus
                         onKeyDown={(e) => {
                           if (e.key === 'Enter') {
@@ -284,15 +284,15 @@ export default function EmbeddedTypeformLeadForm({ onSubmit, className = "" }: E
             </div>
 
             {/* Navigation */}
-            <div className="flex justify-between items-center pt-4">
+            <div className="flex justify-between items-center pt-4 gap-4">
               <Button
                 type="button"
                 variant="ghost"
                 onClick={handlePrevious}
                 disabled={currentStep === 0}
-                className="flex items-center gap-2"
+                className="flex items-center gap-1 sm:gap-2 text-sm sm:text-base"
               >
-                <ChevronLeft className="w-4 h-4" />
+                <ChevronLeft className="w-3 h-3 sm:w-4 sm:h-4" />
                 Anterior
               </Button>
 
@@ -300,7 +300,7 @@ export default function EmbeddedTypeformLeadForm({ onSubmit, className = "" }: E
                 type="button"
                 onClick={handleNext}
                 disabled={isSubmitting}
-                className="flex items-center gap-2 bg-gradient-primary hover:opacity-90 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300"
+                className="flex items-center gap-1 sm:gap-2 bg-gradient-primary hover:opacity-90 text-white font-bold py-3 px-4 sm:px-6 rounded-xl transition-all duration-300 text-sm sm:text-base min-w-[100px] justify-center"
               >
                 {isSubmitting ? (
                   "Enviando..."
@@ -309,7 +309,7 @@ export default function EmbeddedTypeformLeadForm({ onSubmit, className = "" }: E
                 ) : (
                   <>
                     Siguiente
-                    <ChevronRight className="w-4 h-4" />
+                    <ChevronRight className="w-3 h-3 sm:w-4 sm:h-4" />
                   </>
                 )}
               </Button>
@@ -319,8 +319,9 @@ export default function EmbeddedTypeformLeadForm({ onSubmit, className = "" }: E
       </form>
 
       {/* Footer */}
-      <div className="text-center mt-6 text-sm text-muted-foreground">
-        Presiona <kbd className="px-2 py-1 bg-muted/30 rounded">Enter</kbd> para continuar
+      <div className="text-center mt-4 sm:mt-6 text-xs sm:text-sm text-muted-foreground px-2">
+        <span className="hidden sm:inline">Presiona <kbd className="px-2 py-1 bg-muted/30 rounded">Enter</kbd> para continuar</span>
+        <span className="sm:hidden">Presiona Enter para continuar</span>
       </div>
     </div>
   );

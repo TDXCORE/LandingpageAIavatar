@@ -53,17 +53,17 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps) => {
         ))}
       </div>
 
-      <div className="relative z-10 container mx-auto px-6 text-center max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 text-center max-w-7xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Column - Content */}
-          <div className="space-y-8 text-left">
+          <div className="space-y-6 sm:space-y-8 text-left">
             {/* Headline */}
             <div className="space-y-6">
               <div className="inline-flex items-center px-4 py-2 bg-gradient-subtle rounded-full border border-border/50">
                 <span className="text-sm font-medium text-primary">🚀 TDX AI Avatar</span>
               </div>
               
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
                 <span className="bg-gradient-primary bg-clip-text text-transparent">
                   Avatares de IA
                 </span>
@@ -71,17 +71,16 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps) => {
                 <span className="text-foreground">
                   en tiempo real
                 </span>
-                <br />
               </h1>
               
 
-              <p className="text-lg text-muted-foreground">
+              <p className="text-base sm:text-lg text-muted-foreground">
                 Lleva tu soporte, ventas y cobranzas al siguiente nivel con AI Avatar Interactivo de TDX.
               </p>
             </div>
 
             {/* Value Bullets */}
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {[
                 "Demo en 72 horas • MVP en 15 días",
                 "Soporte L1, ventas y cobranzas 24/7",
@@ -90,54 +89,57 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps) => {
               ].map((bullet, index) => (
                 <div key={index} className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-gradient-primary rounded-full" />
-                  <span className="text-sm text-muted-foreground">{bullet}</span>
+                  <span className="text-xs sm:text-sm text-muted-foreground">{bullet}</span>
                 </div>
               ))}
             </div>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col gap-3 sm:gap-4">
               <Button 
                 onClick={handleWhatsAppClick}
-                className="flex items-center gap-3 bg-gradient-primary hover:opacity-90 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl"
+                className="flex items-center justify-center gap-2 sm:gap-3 bg-gradient-primary hover:opacity-90 text-white font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
                 size="lg"
               >
-                <MessageCircle className="w-5 h-5" />
-                Habla con nuestro agente por WhatsApp
+                <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+                <span className="hidden sm:inline">Habla con nuestro agente por WhatsApp</span>
+                <span className="sm:hidden">WhatsApp</span>
               </Button>
               
               <Button 
                 variant="outline" 
                 size="lg"
                 onClick={onOpenModal}
-                className="py-4 px-8 rounded-xl border-2 border-primary/30 hover:border-primary/60 transition-all duration-300"
+                className="py-3 sm:py-4 px-4 sm:px-8 rounded-xl border-2 border-primary/30 hover:border-primary/60 transition-all duration-300 text-sm sm:text-base"
               >
-                Quiero mi demo en 72 horas
+                <span className="hidden sm:inline">Quiero mi demo en 72 horas</span>
+                <span className="sm:hidden">Demo en 72h</span>
               </Button>
             </div>
           </div>
 
           {/* Right Column - VSL */}
-          <div className="relative">
+          <div className="relative order-first lg:order-last">
             {!isVideoPlaying ? (
               <div 
-                className="relative bg-gradient-subtle rounded-2xl p-8 cursor-pointer group hover:scale-105 transition-all duration-300 shadow-glow-primary"
+                className="relative bg-gradient-subtle rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 cursor-pointer group hover:scale-105 transition-all duration-300 shadow-glow-primary"
                 onClick={() => setIsVideoPlaying(true)}
               >
-                <div className="aspect-video bg-secondary/50 rounded-xl flex items-center justify-center border border-border/50">
-                  <div className="text-center space-y-4">
-                    <PlayCircle className="w-20 h-20 text-primary mx-auto group-hover:scale-110 transition-transform duration-300" />
+                <div className="aspect-video bg-secondary/50 rounded-lg sm:rounded-xl flex items-center justify-center border border-border/50">
+                  <div className="text-center space-y-2 sm:space-y-4">
+                    <PlayCircle className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 text-primary mx-auto group-hover:scale-110 transition-transform duration-300" />
                     <div>
-                      <p className="text-xl font-medium mb-2">Ver AI Avatar en acción</p>
-                      <p className="text-sm text-muted-foreground">
-                        Descubre cómo los avatares de IA transforman tu negocio • 4 min
+                      <p className="text-lg sm:text-xl font-medium mb-1 sm:mb-2">Ver AI Avatar en acción</p>
+                      <p className="text-xs sm:text-sm text-muted-foreground px-2">
+                        <span className="hidden sm:inline">Descubre cómo los avatares de IA transforman tu negocio • 4 min</span>
+                        <span className="sm:hidden">Demo 4 min</span>
                       </p>
                     </div>
                   </div>
                 </div>
               </div>
             ) : (
-              <div className="aspect-video bg-secondary rounded-xl flex items-center justify-center">
+              <div className="aspect-video bg-secondary rounded-lg sm:rounded-xl flex items-center justify-center">
                 <p className="text-muted-foreground">VSL Player - AI Avatar Demo</p>
               </div>
             )}
@@ -145,7 +147,7 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps) => {
         </div>
 
         {/* Lead Form Section */}
-        <div className="mt-16 max-w-3xl mx-auto">
+        <div className="mt-8 sm:mt-12 lg:mt-16 max-w-3xl mx-auto px-4 sm:px-0">
           <EmbeddedTypeformLeadForm />
         </div>
       </div>
