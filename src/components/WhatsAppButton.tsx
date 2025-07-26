@@ -16,39 +16,24 @@ export const WhatsAppButton = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleWhatsAppClick = () => {
-    // Get current page context
-    const currentPath = window.location.pathname;
-    const scrollPosition = Math.round((window.scrollY / document.body.scrollHeight) * 100);
-    
-    // Build context message
-    let contextMessage = "[AI_AVATAR] Hola! Vengo de la landing page de AI Avatar Interactivo de TDX";
-    
-    if (scrollPosition > 75) {
-      contextMessage += " y he visto toda la información";
-    } else if (scrollPosition > 50) {
-      contextMessage += " y me interesan los casos de uso";
-    } else if (scrollPosition > 25) {
-      contextMessage += " y quiero conocer más detalles";
+  const scrollToTypeform = () => {
+    const typeform = document.querySelector('[data-testid="typeform"]');
+    if (typeform) {
+      typeform.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
-    
-    contextMessage += ". ¿Podemos hablar sobre cómo pueden ayudarme?";
+  };
 
-    // WhatsApp deep link with context
-    const phone = "573001234567"; // Replace with actual number
-    const message = encodeURIComponent(contextMessage);
-    const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
-    
+  const handleWhatsAppClick = () => {
     // Track event
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'cta_click_whatsapp', {
         event_category: 'engagement',
-        event_label: 'floating_button',
-        value: scrollPosition
+        event_label: 'floating_button'
       });
     }
     
-    window.open(whatsappUrl, '_blank');
+    // Scroll to typeform instead of opening WhatsApp
+    scrollToTypeform();
   };
 
   if (!isVisible) return null;
@@ -70,13 +55,7 @@ export const WhatsAppButton = () => {
             variant="outline" 
             size="sm"
             className="px-3 sm:px-4 py-3 rounded-xl text-sm sm:text-base"
-            onClick={() => {
-              // Scroll to form or open modal
-              const form = document.querySelector('[data-testid="typeform"]');
-              if (form) {
-                form.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
+            onClick={scrollToTypeform}
           >
             Demo
           </Button>

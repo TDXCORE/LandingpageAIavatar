@@ -165,7 +165,7 @@ export default function EmbeddedTypeformLeadForm({ onSubmit, className = "" }: E
   }
 
   return (
-    <div className={`bg-gradient-subtle rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-border/50 shadow-glow-primary ${className}`}>
+    <div className={`bg-gradient-subtle rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 border border-border/50 shadow-glow-primary ${className}`} data-testid="typeform">
       <div className="text-center mb-6 sm:mb-8">
         <h3 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">
           <span className="bg-gradient-primary bg-clip-text text-transparent">

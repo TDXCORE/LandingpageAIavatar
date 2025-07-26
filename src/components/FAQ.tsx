@@ -6,6 +6,12 @@ import {
 } from "@/components/ui/accordion";
 
 export const FAQ = () => {
+  const scrollToTypeform = () => {
+    const typeform = document.querySelector('[data-testid="typeform"]');
+    if (typeform) {
+      typeform.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
   const faqs = [
     {
       question: "¿Pueden integrarse con mi CRM actual?",
@@ -97,15 +103,11 @@ export const FAQ = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button 
                 className="bg-gradient-primary hover:opacity-90 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300"
-                onClick={() => {
-                  const phone = "573001234567";
-                  const message = encodeURIComponent("[AI_AVATAR] Tengo preguntas técnicas sobre la implementación de avatares de IA");
-                  window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
-                }}
+                onClick={scrollToTypeform}
               >
                 Preguntas por WhatsApp
               </button>
-              <button className="border border-border hover:border-primary/60 py-3 px-6 rounded-xl transition-all duration-300">
+              <button className="border border-border hover:border-primary/60 py-3 px-6 rounded-xl transition-all duration-300" onClick={scrollToTypeform}>
                 Agendar consulta técnica
               </button>
             </div>

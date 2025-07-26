@@ -5,11 +5,18 @@ import heroBackground from "@/assets/hero-background.jpg";
 import EmbeddedTypeformLeadForm from "./EmbeddedTypeformLeadForm";
 
 interface HeroAIProps {
-  onOpenModal: () => void;
+  onOpenModal?: () => void;
 }
 
-export const HeroAI = ({ onOpenModal }: HeroAIProps) => {
+export const HeroAI = ({ onOpenModal }: HeroAIProps = {}) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
+  const scrollToTypeform = () => {
+    const typeform = document.querySelector('[data-testid="typeform"]');
+    if (typeform) {
+      typeform.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
 
   const handleWhatsAppClick = () => {
     // Track event
@@ -20,12 +27,8 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps) => {
       });
     }
 
-    // WhatsApp deep link with context
-    const phone = "573001234567"; // Replace with actual number
-    const message = encodeURIComponent("[AI_AVATAR] Hola! Vengo de la landing page y quiero conocer más sobre los avatares de IA en tiempo real de TDX.");
-    const whatsappUrl = `https://wa.me/${phone}?text=${message}`;
-    
-    window.open(whatsappUrl, '_blank');
+    // Scroll to typeform instead of opening WhatsApp
+    scrollToTypeform();
   };
 
   return (
@@ -64,17 +67,17 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps) => {
           {/* Main Title */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">
             <span className="bg-gradient-primary bg-clip-text text-transparent">
-              Avatares de IA
+              AI Avatar Interactivo
             </span>
             <br />
             <span className="text-foreground">
-              en tiempo real
+              para cualquier caso de uso
             </span>
           </h1>
           
           {/* Subtitle */}
           <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Lleva tu soporte, ventas y cobranzas al siguiente nivel con AI Avatar Interactivo de TDX.
+            Vende, atiende y cobra en tiempo real con un solo avatar, integrado a tu stack.
           </p>
         </div>
 
@@ -123,7 +126,7 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps) => {
             <Button 
               variant="outline" 
               size="lg"
-              onClick={onOpenModal}
+              onClick={scrollToTypeform}
               className="py-3 sm:py-4 px-4 sm:px-8 rounded-xl border-2 border-primary/30 hover:border-primary/60 transition-all duration-300 text-sm sm:text-base"
             >
               <span className="hidden sm:inline">Quiero mi demo en 72 horas</span>

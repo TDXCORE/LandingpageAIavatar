@@ -10,6 +10,12 @@ import {
 } from "lucide-react";
 
 export const HowItWorks = () => {
+  const scrollToTypeform = () => {
+    const typeform = document.querySelector('[data-testid="typeform"]');
+    if (typeform) {
+      typeform.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+  };
   const steps = [
     {
       icon: Play,
@@ -155,16 +161,12 @@ export const HowItWorks = () => {
             <div className="flex flex-col gap-3 sm:gap-4 justify-center">
               <Button 
                 className="bg-gradient-primary hover:opacity-90 text-white font-bold py-3 px-6 sm:px-8 rounded-xl text-sm sm:text-base"
-                onClick={() => {
-                  const phone = "573001234567";
-                  const message = encodeURIComponent("[AI_AVATAR] Quiero empezar con mi demo en 72 horas");
-                  window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
-                }}
+                onClick={scrollToTypeform}
               >
                 <span className="hidden sm:inline">Empezar ahora por WhatsApp</span>
                 <span className="sm:hidden">WhatsApp</span>
               </Button>
-              <Button variant="outline" className="py-3 px-6 sm:px-8 rounded-xl text-sm sm:text-base">
+              <Button variant="outline" className="py-3 px-6 sm:px-8 rounded-xl text-sm sm:text-base" onClick={scrollToTypeform}>
                 <span className="hidden sm:inline">Agendar llamada de discovery</span>
                 <span className="sm:hidden">Agendar llamada</span>
               </Button>

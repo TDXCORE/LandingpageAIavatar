@@ -4,14 +4,9 @@ import { UseCasesAI } from "@/components/UseCasesAI";
 import { HowItWorks } from "@/components/HowItWorks";
 import { TechnicalDifferentiators } from "@/components/TechnicalDifferentiators";
 import { FAQ } from "@/components/FAQ";
-import { LeadModal } from "@/components/LeadModal";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
 
 const AIAvatarLanding = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
 
   // Ensure page loads at top
   useEffect(() => {
@@ -21,7 +16,7 @@ const AIAvatarLanding = () => {
   return (
     <div className="min-h-screen bg-background text-foreground">
       {/* Hero Section */}
-      <HeroAI onOpenModal={openModal} />
+      <HeroAI />
       
       
       {/* Use Cases */}
@@ -40,8 +35,6 @@ const AIAvatarLanding = () => {
       {/* WhatsApp Float Button */}
       <WhatsAppButton />
       
-      {/* Lead Modal */}
-      <LeadModal isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 };
