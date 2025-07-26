@@ -9,35 +9,35 @@ export const UseCases = () => {
       title: "E-commerce",
       description: "Convierte visitantes en compradores y mejora el post-venta",
       metrics: "↑ 45% conversión en carrito abandonado",
-      story: "Cuando un cliente llama por un pedido, Mati AI consulta el estado en tiempo real, ofrece tracking y puede procesar cambios o devoluciones automáticamente.",
+      story: "Cuando un cliente llama por un pedido, AI Avatar Interactivo consulta el estado en tiempo real, ofrece tracking y puede procesar cambios o devoluciones automáticamente.",
       features: ["Consulta de pedidos 24/7", "Gestión de devoluciones", "Recuperación de carritos", "Upselling inteligente"]
     },
     reception: {
       title: "Recepción Virtual",
       description: "Filtra llamadas y agenda citas como una recepcionista experta",
       metrics: "↑ 60% citas confirmadas",
-      story: "Los clientes llaman y Mati AI les saluda por nombre, consulta disponibilidad en tu calendario real y agenda la cita perfecta según preferencias y urgencia.",
+      story: "Los clientes llaman y AI Avatar Interactivo les saluda por nombre, consulta disponibilidad en tu calendario real y agenda la cita perfecta según preferencias y urgencia.",
       features: ["Agenda inteligente", "Filtrado de llamadas", "Recordatorios automáticos", "Reprogramación flexible"]
     },
     support: {
       title: "Atención 24/7",
       description: "Soporte técnico que nunca duerme y escala con tu crecimiento",
       metrics: "↓ 70% tickets de soporte",
-      story: "Mati AI resuelve consultas frecuentes, recopila información detallada para casos complejos y transfiere con contexto completo al especialista correcto.",
+      story: "AI Avatar Interactivo resuelve consultas frecuentes, recopila información detallada para casos complejos y transfiere con contexto completo al especialista correcto.",
       features: ["Resolución automática", "Escalamiento inteligente", "Base de conocimiento", "Métricas de satisfacción"]
     },
     leads: {
       title: "Cualificación Leads",
       description: "Identifica oportunidades reales y programa demos de calidad",
       metrics: "↑ 80% leads cualificados",
-      story: "Cada lead que llama es evaluado automáticamente. Mati AI hace las preguntas correctas, detecta el nivel de interés y agenda demos solo con prospects de alta conversión.",
+      story: "Cada lead que llama es evaluado automáticamente. AI Avatar Interactivo hace las preguntas correctas, detecta el nivel de interés y agenda demos solo con prospects de alta conversión.",
       features: ["Scoring automático", "Preguntas dinámicas", "CRM sincronizado", "Follow-up programado"]
     },
     appointments: {
       title: "Gestión Citas",
       description: "Optimiza tu calendario y reduce no-shows dramáticamente",
       metrics: "↓ 85% no-shows",
-      story: "Desde confirmación hasta reprogramación, Mati AI mantiene tu calendario perfecto con recordatorios personalizados y gestión proactiva de cambios.",
+      story: "Desde confirmación hasta reprogramación, AI Avatar Interactivo mantiene tu calendario perfecto con recordatorios personalizados y gestión proactiva de cambios.",
       features: ["Confirmación automática", "Recordatorios personalizados", "Reprogramación inteligente", "Listas de espera"]
     }
   };
@@ -52,7 +52,7 @@ export const UseCases = () => {
             </span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Descubre cómo Mati AI transforma diferentes industrias y necesidades
+            Descubre cómo AI Avatar Interactivo transforma diferentes industrias y necesidades
           </p>
         </div>
 

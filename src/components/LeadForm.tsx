@@ -55,11 +55,11 @@ export const LeadForm = ({ className = "" }: LeadFormProps) => {
         <div className="text-center mb-8">
           <h3 className="text-3xl font-bold mb-4">
             <span className="bg-gradient-primary bg-clip-text text-transparent">
-              Prueba Mati AI Gratis
+              Prueba AI Avatar Interactivo Gratis
             </span>
           </h3>
           <p className="text-muted-foreground text-lg">
-            Agenda tu demostración personalizada y descubre cómo Mati AI puede transformar tu negocio
+            Agenda tu demostración personalizada y descubre cómo AI Avatar Interactivo puede transformar tu negocio
           </p>
         </div>
 

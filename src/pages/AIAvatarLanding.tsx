@@ -1,10 +1,8 @@
 import { useState } from "react";
 import { HeroAI } from "@/components/HeroAI";
-import { SocialProof } from "@/components/SocialProof";
 import { UseCasesAI } from "@/components/UseCasesAI";
 import { HowItWorks } from "@/components/HowItWorks";
 import { TechnicalDifferentiators } from "@/components/TechnicalDifferentiators";
-import { PricingPlans } from "@/components/PricingPlans";
 import { FAQ } from "@/components/FAQ";
 import { LeadModal } from "@/components/LeadModal";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
@@ -20,8 +18,6 @@ const AIAvatarLanding = () => {
       {/* Hero Section */}
       <HeroAI onOpenModal={openModal} />
       
-      {/* Social Proof */}
-      <SocialProof />
       
       {/* Use Cases */}
       <UseCasesAI />
@@ -32,8 +28,6 @@ const AIAvatarLanding = () => {
       {/* Technical Differentiators */}
       <TechnicalDifferentiators />
       
-      {/* Pricing Plans */}
-      <PricingPlans onOpenModal={openModal} />
       
       {/* FAQ */}
       <FAQ />

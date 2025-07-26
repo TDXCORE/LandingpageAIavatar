@@ -185,7 +185,7 @@ export const LeadModal = ({ isOpen, onClose }: LeadModalProps) => {
         <DialogHeader>
           <div className="flex items-center justify-between">
             <DialogTitle className="text-xl font-semibold bg-gradient-primary bg-clip-text text-transparent">
-              Prueba Mati AI Gratis
+              Prueba AI Avatar Interactivo Gratis
             </DialogTitle>
             <Button
               variant="ghost"
@@ -261,9 +261,6 @@ export const LeadModal = ({ isOpen, onClose }: LeadModalProps) => {
                 >
                   {(field) => (
                     <div className="space-y-2">
-                      <Label htmlFor={field.name} className="text-foreground font-medium">
-                        {currentStepData.title}
-                      </Label>
                       
                       {currentStepData.type === 'phone' ? (
                         <CustomPhoneInput

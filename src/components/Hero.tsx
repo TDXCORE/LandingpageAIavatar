@@ -42,7 +42,7 @@ export const Hero = ({ onOpenModal }: HeroProps) => {
           <div className="space-y-4">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold leading-tight">
               <span className="bg-gradient-primary bg-clip-text text-transparent">
-                Mati AI
+                AI Avatar Interactivo
               </span>
               <br />
               <span className="text-foreground">
@@ -69,7 +69,7 @@ export const Hero = ({ onOpenModal }: HeroProps) => {
                 <div className="aspect-video bg-secondary/50 rounded-xl flex items-center justify-center border border-border/50">
                   <div className="text-center space-y-4">
                     <PlayCircle className="w-16 h-16 text-primary mx-auto group-hover:scale-110 transition-transform duration-300" />
-                    <p className="text-lg font-medium">Ver Mati AI en acción</p>
+                    <p className="text-lg font-medium">Ver AI Avatar Interactivo en acción</p>
                     <p className="text-sm text-muted-foreground">Descubre cómo transformamos tus llamadas en reuniones • 3 min</p>
                   </div>
                 </div>
@@ -94,7 +94,7 @@ export const Hero = ({ onOpenModal }: HeroProps) => {
               onClick={onOpenModal}
               className="w-full sm:w-auto"
             >
-              Probar Mati AI →
+              Probar AI Avatar Interactivo →
             </Button>
             
             <Button 
@@ -109,7 +109,7 @@ export const Hero = ({ onOpenModal }: HeroProps) => {
           {/* Social proof */}
           <div className="pt-8">
             <p className="text-sm text-muted-foreground mb-4">
-              Empresas que ya confían en Mati AI
+              Empresas que ya confían en AI Avatar Interactivo
             </p>
             <div className="flex flex-wrap justify-center items-center gap-8 opacity-60">
               {/* Placeholder for company logos */}

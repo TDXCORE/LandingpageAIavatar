@@ -72,15 +72,8 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps) => {
                   en tiempo real
                 </span>
                 <br />
-                <span className="text-muted-foreground text-3xl md:text-4xl lg:text-5xl">
-                  que convierten conversaciones en ventas
-                </span>
               </h1>
               
-              <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-                <span className="text-primary font-semibold">Latencia &lt; 800 ms</span>, integraciones sin límites y{" "}
-                <span className="text-primary font-semibold">demos en 72 horas</span>.
-              </p>
 
               <p className="text-lg text-muted-foreground">
                 Lleva tu soporte, ventas y cobranzas al siguiente nivel con AI Avatar Interactivo de TDX.
