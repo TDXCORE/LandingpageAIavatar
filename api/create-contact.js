@@ -15,7 +15,27 @@ export default async function handler(req, res) {
   }
 
   try {
-    const { name, email, phone } = req.body;
+    const { 
+      name, 
+      email, 
+      phone,
+      // New AI Avatar fields
+      company,
+      role,
+      industry,
+      revenue_band,
+      use_case_primary,
+      urgency,
+      // Analytics fields
+      utm_source,
+      utm_medium,
+      utm_campaign,
+      utm_content,
+      session_id,
+      video_progress,
+      gclid,
+      fbclid
+    } = req.body;
 
     console.log('Received request data:', { name, email, phone });
 
@@ -60,18 +80,71 @@ export default async function handler(req, res) {
     console.log('Chatwoot account ID:', process.env.VITE_CHATWOOT_ACCOUNT_ID || process.env.CHATWOOT_ACCOUNT_ID);
     console.log('Chatwoot API token exists:', !!(process.env.VITE_CHATWOOT_API_TOKEN || process.env.CHATWOOT_API_TOKEN));
 
-    // Chatwoot API call
+    // Chatwoot API call with enhanced data
     const chatwootPayload = {
       name,
       email,
       phone_number: formattedPhone,
-      identifier: `lead-${Date.now()}`,
+      identifier: `ai-avatar-${Date.now()}`,
       custom_attributes: {
-        source: 'landing_page',
-        form_type: 'vsl_lead_form',
+        source: 'ai_avatar_landing',
+        form_type: 'ai_avatar_lead_form',
         created_at: new Date().toISOString(),
+        // Business fields
+        company: company || '',
+        role: role || '',
+        industry: industry || '',
+        revenue_band: revenue_band || '',
+        use_case_primary: use_case_primary || '',
+        urgency: urgency || '',
+        // Analytics fields
+        utm_source: utm_source || '',
+        utm_medium: utm_medium || '',
+        utm_campaign: utm_campaign || '',
+        utm_content: utm_content || '',
+        session_id: session_id || '',
+        video_progress: video_progress || 0,
+        gclid: gclid || '',
+        fbclid: fbclid || '',
+        lead_score: calculateLeadScore({
+          company,
+          role,
+          industry,
+          revenue_band,
+          urgency,
+          video_progress
+        })
       },
     };
+
+    // Calculate lead score function
+    function calculateLeadScore(data) {
+      let score = 0;
+      
+      // Company presence (+10)
+      if (data.company) score += 10;
+      
+      // Senior role (+20)
+      if (data.role && ['cto', 'cio', 'director', 'head', 'vp', 'ceo'].some(r => 
+        data.role.toLowerCase().includes(r))) score += 20;
+      
+      // High-value industry (+15)
+      if (data.industry && ['technology', 'finance', 'healthcare', 'enterprise'].some(i => 
+        data.industry.toLowerCase().includes(i))) score += 15;
+      
+      // Revenue band (+25 for enterprise)
+      if (data.revenue_band && data.revenue_band.includes('10M+')) score += 25;
+      else if (data.revenue_band && data.revenue_band.includes('1M+')) score += 15;
+      
+      // Urgency (+20 for immediate)
+      if (data.urgency === 'immediate') score += 20;
+      else if (data.urgency === '1-3_months') score += 10;
+      
+      // Video engagement (+10 for >50% viewed)
+      if (data.video_progress > 50) score += 10;
+      
+      return Math.min(score, 100); // Cap at 100
+    }
 
     console.log('Chatwoot payload:', chatwootPayload);
 
