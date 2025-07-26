@@ -53,73 +53,34 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps) => {
         ))}
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 text-center max-w-7xl">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-          {/* Left Column - Content */}
-          <div className="space-y-6 sm:space-y-8 text-left">
-            {/* Headline */}
-            <div className="space-y-6">
-              <div className="inline-flex items-center px-4 py-2 bg-gradient-subtle rounded-full border border-border/50">
-                <span className="text-sm font-medium text-primary">🚀 TDX AI Avatar</span>
-              </div>
-              
-              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
-                <span className="bg-gradient-primary bg-clip-text text-transparent">
-                  Avatares de IA
-                </span>
-                <br />
-                <span className="text-foreground">
-                  en tiempo real
-                </span>
-              </h1>
-              
-
-              <p className="text-base sm:text-lg text-muted-foreground">
-                Lleva tu soporte, ventas y cobranzas al siguiente nivel con AI Avatar Interactivo de TDX.
-              </p>
-            </div>
-
-            {/* Value Bullets */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-              {[
-                "Demo en 72 horas • MVP en 15 días",
-                "Soporte L1, ventas y cobranzas 24/7",
-                "Integración con CRM, ERP, WhatsApp, VoIP",
-                "Seguridad enterprise y observabilidad"
-              ].map((bullet, index) => (
-                <div key={index} className="flex items-center space-x-3">
-                  <div className="w-2 h-2 bg-gradient-primary rounded-full" />
-                  <span className="text-xs sm:text-sm text-muted-foreground">{bullet}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* CTAs */}
-            <div className="flex flex-col gap-3 sm:gap-4">
-              <Button 
-                onClick={handleWhatsAppClick}
-                className="flex items-center justify-center gap-2 sm:gap-3 bg-gradient-primary hover:opacity-90 text-white font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
-                size="lg"
-              >
-                <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
-                <span className="hidden sm:inline">Habla con nuestro agente por WhatsApp</span>
-                <span className="sm:hidden">WhatsApp</span>
-              </Button>
-              
-              <Button 
-                variant="outline" 
-                size="lg"
-                onClick={onOpenModal}
-                className="py-3 sm:py-4 px-4 sm:px-8 rounded-xl border-2 border-primary/30 hover:border-primary/60 transition-all duration-300 text-sm sm:text-base"
-              >
-                <span className="hidden sm:inline">Quiero mi demo en 72 horas</span>
-                <span className="sm:hidden">Demo en 72h</span>
-              </Button>
-            </div>
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 max-w-7xl">
+        {/* Hero Title Section - Always First */}
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          {/* Badge */}
+          <div className="inline-flex items-center px-4 py-2 bg-gradient-subtle rounded-full border border-border/50 mb-6">
+            <span className="text-sm font-medium text-primary">🚀 TDX AI Avatar</span>
           </div>
+          
+          {/* Main Title */}
+          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight mb-6">
+            <span className="bg-gradient-primary bg-clip-text text-transparent">
+              Avatares de IA
+            </span>
+            <br />
+            <span className="text-foreground">
+              en tiempo real
+            </span>
+          </h1>
+          
+          {/* Subtitle */}
+          <p className="text-base sm:text-lg lg:text-xl text-muted-foreground max-w-3xl mx-auto">
+            Lleva tu soporte, ventas y cobranzas al siguiente nivel con AI Avatar Interactivo de TDX.
+          </p>
+        </div>
 
-          {/* Right Column - VSL */}
-          <div className="relative order-first lg:order-last">
+        {/* VSL Section - Second */}
+        <div className="mb-8 sm:mb-12 lg:mb-16">
+          <div className="max-w-4xl mx-auto">
             {!isVideoPlaying ? (
               <div 
                 className="relative bg-gradient-subtle rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 cursor-pointer group hover:scale-105 transition-all duration-300 shadow-glow-primary"
@@ -146,8 +107,48 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps) => {
           </div>
         </div>
 
-        {/* Lead Form Section */}
-        <div className="mt-8 sm:mt-12 lg:mt-16 max-w-3xl mx-auto px-4 sm:px-0">
+        {/* Buttons Section - Third */}
+        <div className="text-center mb-8 sm:mb-12 lg:mb-16">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-2xl mx-auto">
+            <Button 
+              onClick={handleWhatsAppClick}
+              className="flex items-center justify-center gap-2 sm:gap-3 bg-gradient-primary hover:opacity-90 text-white font-bold py-3 sm:py-4 px-4 sm:px-8 rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl text-sm sm:text-base"
+              size="lg"
+            >
+              <MessageCircle className="w-4 h-4 sm:w-5 sm:h-5" />
+              <span className="hidden sm:inline">Habla con nuestro agente por WhatsApp</span>
+              <span className="sm:hidden">WhatsApp</span>
+            </Button>
+            
+            <Button 
+              variant="outline" 
+              size="lg"
+              onClick={onOpenModal}
+              className="py-3 sm:py-4 px-4 sm:px-8 rounded-xl border-2 border-primary/30 hover:border-primary/60 transition-all duration-300 text-sm sm:text-base"
+            >
+              <span className="hidden sm:inline">Quiero mi demo en 72 horas</span>
+              <span className="sm:hidden">Demo en 72h</span>
+            </Button>
+          </div>
+
+          {/* Value Bullets */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 max-w-4xl mx-auto mt-8">
+            {[
+              "Demo en 72 horas • MVP en 15 días",
+              "Soporte L1, ventas y cobranzas 24/7",
+              "Integración con CRM, ERP, WhatsApp, VoIP",
+              "Seguridad enterprise y observabilidad"
+            ].map((bullet, index) => (
+              <div key={index} className="flex items-center justify-center space-x-2 text-center">
+                <div className="w-2 h-2 bg-gradient-primary rounded-full flex-shrink-0" />
+                <span className="text-xs sm:text-sm text-muted-foreground">{bullet}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Lead Form Section - Fourth */}
+        <div className="max-w-3xl mx-auto px-4 sm:px-0">
           <EmbeddedTypeformLeadForm />
         </div>
       </div>
