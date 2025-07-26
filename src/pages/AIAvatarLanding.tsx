@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { HeroAI } from "@/components/HeroAI";
 import { UseCasesAI } from "@/components/UseCasesAI";
 import { HowItWorks } from "@/components/HowItWorks";
@@ -12,6 +12,11 @@ const AIAvatarLanding = () => {
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
+
+  // Ensure page loads at top
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div className="min-h-screen bg-background text-foreground">

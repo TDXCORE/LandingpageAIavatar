@@ -271,7 +271,7 @@ export const LeadModal = ({ isOpen, onClose }: LeadModalProps) => {
                           onBlur={field.handleBlur}
                           placeholder={currentStepData.placeholder}
                           className="w-full"
-                          autoFocus
+                          autoFocus={false}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter') {
                               handleKeyPress(e);
@@ -288,7 +288,7 @@ export const LeadModal = ({ isOpen, onClose }: LeadModalProps) => {
                           onBlur={field.handleBlur}
                           placeholder={currentStepData.placeholder}
                           className="bg-secondary/50 border-border focus:border-primary"
-                          autoFocus
+                          autoFocus={false}
                           onKeyDown={(e) => {
                             if (e.key === 'Enter') {
                               handleKeyPress(e);

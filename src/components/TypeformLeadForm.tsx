@@ -224,7 +224,7 @@ export default function TypeformLeadForm({ onSubmit }: TypeformLeadFormProps) {
                           onBlur={field.handleBlur}
                           placeholder={currentStepData.placeholder}
                           className="w-full h-14 text-lg"
-                          autoFocus
+                          autoFocus={false}
                           onKeyPress={handleKeyPress}
                         />
                       ) : (
@@ -237,7 +237,7 @@ export default function TypeformLeadForm({ onSubmit }: TypeformLeadFormProps) {
                           onBlur={field.handleBlur}
                           placeholder={currentStepData.placeholder}
                           className="w-full h-14 text-lg"
-                          autoFocus
+                          autoFocus={false}
                           onKeyPress={handleKeyPress}
                         />
                       )}

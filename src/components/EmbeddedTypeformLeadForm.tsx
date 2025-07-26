@@ -247,7 +247,7 @@ export default function EmbeddedTypeformLeadForm({ onSubmit, className = "" }: E
                         onBlur={field.handleBlur}
                         placeholder={currentStepData.placeholder}
                         className="w-full"
-                        autoFocus
+                        autoFocus={false}
                         onKeyDown={(e) => {
                           if (e.key === 'Enter') {
                             handleKeyPress(e);
@@ -264,7 +264,7 @@ export default function EmbeddedTypeformLeadForm({ onSubmit, className = "" }: E
                         onBlur={field.handleBlur}
                         placeholder={currentStepData.placeholder}
                         className="bg-input border-border/50 focus:border-primary/50 focus:ring-primary/20 transition-all h-11 sm:h-12 text-base"
-                        autoFocus
+                        autoFocus={false}
                         onKeyDown={(e) => {
                           if (e.key === 'Enter') {
                             handleKeyPress(e);
