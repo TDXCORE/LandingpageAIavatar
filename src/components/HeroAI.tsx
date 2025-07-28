@@ -26,23 +26,72 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps = {}) => {
         script.onload = () => {
           setTimeout(() => {
             createVideoPlayer();
+            setupVideoObserver();
           }, 500);
         };
       } else {
         // Script already exists, create player immediately
         setTimeout(() => {
           createVideoPlayer();
+          setupVideoObserver();
         }, 100);
       }
       
       function createVideoPlayer() {
         const videoContainer = document.getElementById('video-container');
         if (videoContainer && !videoContainer.querySelector('vturb-smartplayer')) {
+          // Clear any existing content
+          videoContainer.innerHTML = '';
+          
           const playerElement = document.createElement('vturb-smartplayer');
           playerElement.setAttribute('id', 'vid-68864dd25085f9596490a9bb');
-          playerElement.setAttribute('style', 'display: block; margin: 0 auto; width: 100%; height: 100%;');
+          playerElement.setAttribute('style', 'display: block; margin: 0 auto; width: 100% !important; height: 100% !important; position: relative !important; max-width: 100% !important; max-height: 100% !important;');
+          
           videoContainer.appendChild(playerElement);
+          
+          // Force the container to constrain the video
+          videoContainer.style.cssText += 'position: relative !important; overflow: hidden !important; width: 100% !important; height: 100% !important;';
         }
+      }
+      
+      function setupVideoObserver() {
+        // Monitor for any changes that might move the video outside the container
+        const observer = new MutationObserver((mutations) => {
+          mutations.forEach((mutation) => {
+            if (mutation.type === 'childList' || mutation.type === 'attributes') {
+              // Check if video player exists and force it back into container
+              const player = document.querySelector('vturb-smartplayer');
+              const container = document.getElementById('video-container');
+              
+              if (player && container && !container.contains(player)) {
+                // Video was moved outside, bring it back
+                container.appendChild(player);
+                player.setAttribute('style', 'display: block; margin: 0 auto; width: 100% !important; height: 100% !important; position: relative !important; max-width: 100% !important; max-height: 100% !important;');
+              }
+              
+              // Also ensure any child elements are properly contained
+              if (player) {
+                const playerChildren = player.querySelectorAll('*');
+                playerChildren.forEach(child => {
+                  if (child.style.position === 'fixed' || child.style.position === 'absolute') {
+                    child.style.position = 'relative';
+                  }
+                });
+              }
+            }
+          });
+        });
+        
+        // Start observing
+        observer.observe(document.body, {
+          childList: true,
+          subtree: true,
+          attributes: true,
+          attributeFilter: ['style', 'class']
+        });
+        
+        // Cleanup observer when component unmounts
+        return () => observer.disconnect();
       }
     }
   }, [isVideoPlaying]);
@@ -142,6 +191,12 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps = {}) => {
               <div 
                 id="video-container"
                 className="aspect-video bg-secondary rounded-lg sm:rounded-xl overflow-hidden"
+                style={{ 
+                  position: 'relative', 
+                  zIndex: 1,
+                  width: '100%',
+                  height: '100%'
+                }}
               >
                 {/* Video player will be injected here by useEffect */}
               </div>
