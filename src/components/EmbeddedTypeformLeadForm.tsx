@@ -86,6 +86,11 @@ export default function EmbeddedTypeformLeadForm({ onSubmit, className = "" }: E
           setIsCompleted(true);
           toast.success('¡Perfecto! Te contactaremos pronto para tu prueba gratuita.');
           onSubmit?.(value);
+          
+          // Redirección a WhatsApp después del envío exitoso
+          setTimeout(() => {
+            window.open('https://api.whatsapp.com/send?phone=573123626283&text=Quiero%20mas%20informacion%20sobre%20los%20servicios%20', '_blank');
+          }, 1500);
         } else {
           throw new Error(result.error || result.message || 'Failed to submit form');
         }
