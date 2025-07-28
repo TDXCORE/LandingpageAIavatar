@@ -11,21 +11,39 @@ interface HeroAIProps {
 export const HeroAI = ({ onOpenModal }: HeroAIProps = {}) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
-  // Load the vturb-smartplayer script when component mounts
+  // Load the vturb-smartplayer script and create video element
   useEffect(() => {
     if (isVideoPlaying) {
-      const script = document.createElement("script");
-      script.src = "https://scripts.converteai.net/68e9c115-6aaf-44f0-b760-49aac229e708/players/68864dd25085f9596490a9bb/v4/player.js";
-      script.async = true;
-      document.head.appendChild(script);
+      // Check if script already exists
+      const existingScript = document.querySelector('script[src*="converteai.net"]');
+      if (!existingScript) {
+        const script = document.createElement("script");
+        script.src = "https://scripts.converteai.net/68e9c115-6aaf-44f0-b760-49aac229e708/players/68864dd25085f9596490a9bb/v4/player.js";
+        script.async = true;
+        document.head.appendChild(script);
+        
+        // Wait for script to load before creating the player element
+        script.onload = () => {
+          setTimeout(() => {
+            createVideoPlayer();
+          }, 500);
+        };
+      } else {
+        // Script already exists, create player immediately
+        setTimeout(() => {
+          createVideoPlayer();
+        }, 100);
+      }
       
-      return () => {
-        // Cleanup: remove script when component unmounts or video stops
-        const existingScript = document.querySelector(`script[src="${script.src}"]`);
-        if (existingScript) {
-          document.head.removeChild(existingScript);
+      function createVideoPlayer() {
+        const videoContainer = document.getElementById('video-container');
+        if (videoContainer && !videoContainer.querySelector('vturb-smartplayer')) {
+          const playerElement = document.createElement('vturb-smartplayer');
+          playerElement.setAttribute('id', 'vid-68864dd25085f9596490a9bb');
+          playerElement.setAttribute('style', 'display: block; margin: 0 auto; width: 100%; height: 100%;');
+          videoContainer.appendChild(playerElement);
         }
-      };
+      }
     }
   }, [isVideoPlaying]);
 
@@ -121,11 +139,11 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps = {}) => {
                 </div>
               </div>
             ) : (
-              <div className="aspect-video bg-secondary rounded-lg sm:rounded-xl overflow-hidden">
-                <vturb-smartplayer 
-                  id="vid-68864dd25085f9596490a9bb" 
-                  style="display: block; margin: 0 auto; width: 100%; height: 100%;"
-                />
+              <div 
+                id="video-container"
+                className="aspect-video bg-secondary rounded-lg sm:rounded-xl overflow-hidden"
+              >
+                {/* Video player will be injected here by useEffect */}
               </div>
             )}
           </div>
