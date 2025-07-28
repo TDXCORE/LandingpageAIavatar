@@ -9,30 +9,26 @@ interface HeroAIProps {
 }
 
 export const HeroAI = ({ onOpenModal }: HeroAIProps = {}) => {
-  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
-
-  // Load the vturb-smartplayer script and create video element
+  // Load the vturb-smartplayer script and create video element automatically
   useEffect(() => {
-    if (isVideoPlaying) {
-      const videoContainer = document.getElementById('video-container');
-      if (videoContainer) {
-        // Insert the exact HTML code provided
-        videoContainer.innerHTML = `
-          <vturb-smartplayer id="vid-68864dd25085f9596490a9bb" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>
-        `;
-        
-        // Load the script
-        const existingScript = document.querySelector('script[src*="converteai.net"]');
-        if (!existingScript) {
-          const script = document.createElement("script");
-          script.type = "text/javascript";
-          script.src = "https://scripts.converteai.net/68e9c115-6aaf-44f0-b760-49aac229e708/players/68864dd25085f9596490a9bb/v4/player.js";
-          script.async = true;
-          document.head.appendChild(script);
-        }
+    const videoContainer = document.getElementById('video-container');
+    if (videoContainer) {
+      // Insert the exact HTML code provided
+      videoContainer.innerHTML = `
+        <vturb-smartplayer id="vid-68864dd25085f9596490a9bb" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>
+      `;
+      
+      // Load the script
+      const existingScript = document.querySelector('script[src*="converteai.net"]');
+      if (!existingScript) {
+        const script = document.createElement("script");
+        script.type = "text/javascript";
+        script.src = "https://scripts.converteai.net/68e9c115-6aaf-44f0-b760-49aac229e708/players/68864dd25085f9596490a9bb/v4/player.js";
+        script.async = true;
+        document.head.appendChild(script);
       }
     }
-  }, [isVideoPlaying]);
+  }, []);
 
   const scrollToTypeform = () => {
     const typeform = document.querySelector('[data-testid="typeform"]');
@@ -107,37 +103,17 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps = {}) => {
         {/* VSL Section - Second */}
         <div className="mb-8 sm:mb-12 lg:mb-16">
           <div className="max-w-4xl mx-auto">
-            {!isVideoPlaying ? (
-              <div 
-                className="relative bg-gradient-subtle rounded-xl sm:rounded-2xl p-4 sm:p-6 lg:p-8 cursor-pointer group hover:scale-105 transition-all duration-300 shadow-glow-primary"
-                onClick={() => setIsVideoPlaying(true)}
-              >
-                <div className="aspect-video bg-secondary/50 rounded-lg sm:rounded-xl flex items-center justify-center border border-border/50">
-                  <div className="text-center space-y-2 sm:space-y-4">
-                    <PlayCircle className="w-12 h-12 sm:w-16 sm:h-16 lg:w-20 lg:h-20 text-primary mx-auto group-hover:scale-110 transition-transform duration-300" />
-                    <div>
-                      <p className="text-lg sm:text-xl font-medium mb-1 sm:mb-2">Ver AI Avatar en acción</p>
-                      <p className="text-xs sm:text-sm text-muted-foreground px-2">
-                        <span className="hidden sm:inline">Descubre cómo los avatares de IA transforman tu negocio • 4 min</span>
-                        <span className="sm:hidden">Demo 4 min</span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div 
-                id="video-container"
-                className="aspect-video bg-secondary rounded-lg sm:rounded-xl"
-                style={{ 
-                  position: 'relative',
-                  width: '100%',
-                  height: '100%'
-                }}
-              >
-                {/* Video player will be injected here by useEffect */}
-              </div>
-            )}
+            <div 
+              id="video-container"
+              className="aspect-video bg-secondary rounded-lg sm:rounded-xl"
+              style={{ 
+                position: 'relative',
+                width: '100%',
+                height: '100%'
+              }}
+            >
+              {/* Video player will be injected here by useEffect */}
+            </div>
           </div>
         </div>
 
