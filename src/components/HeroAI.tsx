@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { PlayCircle, MessageCircle } from "lucide-react";
 import heroBackground from "@/assets/hero-background.jpg";
@@ -10,6 +10,24 @@ interface HeroAIProps {
 
 export const HeroAI = ({ onOpenModal }: HeroAIProps = {}) => {
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
+
+  // Load the vturb-smartplayer script when component mounts
+  useEffect(() => {
+    if (isVideoPlaying) {
+      const script = document.createElement("script");
+      script.src = "https://scripts.converteai.net/68e9c115-6aaf-44f0-b760-49aac229e708/players/68864dd25085f9596490a9bb/v4/player.js";
+      script.async = true;
+      document.head.appendChild(script);
+      
+      return () => {
+        // Cleanup: remove script when component unmounts or video stops
+        const existingScript = document.querySelector(`script[src="${script.src}"]`);
+        if (existingScript) {
+          document.head.removeChild(existingScript);
+        }
+      };
+    }
+  }, [isVideoPlaying]);
 
   const scrollToTypeform = () => {
     const typeform = document.querySelector('[data-testid="typeform"]');
@@ -103,8 +121,11 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps = {}) => {
                 </div>
               </div>
             ) : (
-              <div className="aspect-video bg-secondary rounded-lg sm:rounded-xl flex items-center justify-center">
-                <p className="text-muted-foreground">VSL Player - AI Avatar Demo</p>
+              <div className="aspect-video bg-secondary rounded-lg sm:rounded-xl overflow-hidden">
+                <vturb-smartplayer 
+                  id="vid-68864dd25085f9596490a9bb" 
+                  style="display: block; margin: 0 auto; width: 100%; height: 100%;"
+                />
               </div>
             )}
           </div>
