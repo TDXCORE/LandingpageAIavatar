@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { PlayCircle, MessageCircle } from "lucide-react";
 import heroBackground from "@/assets/hero-background.jpg";
 import EmbeddedTypeformLeadForm from "./EmbeddedTypeformLeadForm";
+import { trackLead } from "@/lib/facebook-pixel";
 
 interface HeroAIProps {
   onOpenModal?: () => void;
@@ -38,7 +39,10 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps = {}) => {
   };
 
   const handleWhatsAppClick = () => {
-    // Track event
+    // Track Facebook Pixel event
+    trackLead('Hero WhatsApp Button', 'engagement');
+
+    // Track Google Analytics event
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'cta_click_whatsapp', {
         event_category: 'engagement',
@@ -133,7 +137,11 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps = {}) => {
             <Button 
               variant="outline" 
               size="lg"
-              onClick={scrollToTypeform}
+              onClick={() => {
+                // Track Facebook Pixel event
+                trackLead('Hero Demo Button', 'engagement');
+                scrollToTypeform();
+              }}
               className="py-3 sm:py-4 px-4 sm:px-8 rounded-xl border-2 border-primary/30 hover:border-primary/60 transition-all duration-300 text-sm sm:text-base"
             >
               <span className="hidden sm:inline">Quiero mi demo en 72 horas</span>

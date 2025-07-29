@@ -24,7 +24,15 @@ export const WhatsAppButton = () => {
   };
 
   const handleWhatsAppClick = () => {
-    // Track event
+    // Track Facebook Pixel event
+    if (typeof window !== 'undefined' && window.fbq) {
+      window.fbq('track', 'Lead', {
+        content_name: 'WhatsApp Floating Button',
+        content_category: 'engagement'
+      });
+    }
+
+    // Track Google Analytics event
     if (typeof window !== 'undefined' && window.gtag) {
       window.gtag('event', 'cta_click_whatsapp', {
         event_category: 'engagement',
@@ -55,7 +63,16 @@ export const WhatsAppButton = () => {
             variant="outline" 
             size="sm"
             className="px-3 sm:px-4 py-3 rounded-xl text-sm sm:text-base"
-            onClick={scrollToTypeform}
+            onClick={() => {
+              // Track Facebook Pixel event
+              if (typeof window !== 'undefined' && window.fbq) {
+                window.fbq('track', 'Lead', {
+                  content_name: 'Mobile Demo Button',
+                  content_category: 'engagement'
+                });
+              }
+              scrollToTypeform();
+            }}
           >
             Demo
           </Button>

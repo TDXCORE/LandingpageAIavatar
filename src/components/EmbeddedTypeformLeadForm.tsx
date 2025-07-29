@@ -83,6 +83,15 @@ export default function EmbeddedTypeformLeadForm({ onSubmit, className = "" }: E
         console.log('Response data:', result);
         
         if (response.ok && result.success) {
+          // Track Facebook Pixel event for form completion
+          if (typeof window !== 'undefined' && window.fbq) {
+            window.fbq('track', 'CompleteRegistration', {
+              content_name: 'Lead Form Completion',
+              value: 1,
+              currency: 'USD'
+            });
+          }
+
           setIsCompleted(true);
           toast.success('¡Perfecto! Te contactaremos pronto para tu prueba gratuita.');
           onSubmit?.(value);
@@ -303,7 +312,16 @@ export default function EmbeddedTypeformLeadForm({ onSubmit, className = "" }: E
 
               <Button
                 type="button"
-                onClick={handleNext}
+                onClick={() => {
+                  // Track Facebook Pixel event for form steps
+                  if (typeof window !== 'undefined' && window.fbq) {
+                    window.fbq('track', 'Lead', {
+                      content_name: `Form Step ${currentStep + 1}`,
+                      content_category: 'form_interaction'
+                    });
+                  }
+                  handleNext();
+                }}
                 disabled={isSubmitting}
                 className="flex items-center gap-1 sm:gap-2 bg-gradient-primary hover:opacity-90 text-white font-bold py-3 px-4 sm:px-6 rounded-xl transition-all duration-300 text-sm sm:text-base min-w-[100px] justify-center"
               >
