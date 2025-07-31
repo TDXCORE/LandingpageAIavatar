@@ -16,7 +16,7 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps = {}) => {
     if (videoContainer) {
       // Insert the exact HTML code provided
       videoContainer.innerHTML = `
-        <vturb-smartplayer id="vid-68864dd25085f9596490a9bb" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>
+        <vturb-smartplayer id="vid-688b9823472c92b73bbbec89" style="display: block; margin: 0 auto; width: 100%;"></vturb-smartplayer>
       `;
       
       // Load the script
@@ -24,7 +24,7 @@ export const HeroAI = ({ onOpenModal }: HeroAIProps = {}) => {
       if (!existingScript) {
         const script = document.createElement("script");
         script.type = "text/javascript";
-        script.src = "https://scripts.converteai.net/68e9c115-6aaf-44f0-b760-49aac229e708/players/68864dd25085f9596490a9bb/v4/player.js";
+        script.src = "https://scripts.converteai.net/68e9c115-6aaf-44f0-b760-49aac229e708/players/688b9823472c92b73bbbec89/v4/player.js";
         script.async = true;
         document.head.appendChild(script);
       }
